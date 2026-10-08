@@ -17,20 +17,22 @@ import { createBooking, updateBooking } from "@/features/bookings/bookingsApi";
 
 export default function BookingPage() {
     const dispatch = useAppDispatch();
+
     const [refreshKey, setRefreshKey] = useState(0);
-    const [selectedDate, setSelectedDate] = useState(() => {
-        const today = new Date();
 
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, "0");
-        const day = String(today.getDate()).padStart(2, "0");
-
-        return `${year}-${month}-${day}`;
-    });
+    const [today, setToday] = useState("");
+    const [selectedDate, setSelectedDate] = useState("");
 
     const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        const date = getTodayDate();
+
+        setToday(date);
+        setSelectedDate(date);
+    }, []);
 
     const handleSubmitBooking = async (data: {
         date: string;
@@ -104,7 +106,7 @@ export default function BookingPage() {
                         label="Select date"
                         type="date"
                         value={selectedDate}
-                        min={getTodayDate()}
+                        min={today}
                         onChange={(event) =>
                             setSelectedDate(event.target.value)
                         }
