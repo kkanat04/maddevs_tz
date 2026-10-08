@@ -31,7 +31,9 @@ export default function BookingList({
     );
 
     useEffect(() => {
-        const loadBookings = async () => {
+        if (!date) return;
+
+        async function loadBookings() {
             dispatch(setLoading(true));
             dispatch(setError(null));
 
@@ -43,7 +45,7 @@ export default function BookingList({
             } finally {
                 dispatch(setLoading(false));
             }
-        };
+        }
 
         loadBookings();
     }, [date, refreshKey, dispatch]);
