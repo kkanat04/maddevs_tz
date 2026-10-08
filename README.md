@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+````md
+# Meeting Room Booking
 
-## Getting Started
+Небольшое приложение для бронирования переговорной комнаты.
 
-First, run the development server:
+## Запуск
+
+Установить зависимости:
+
+```bash
+npm install
+```
+````
+
+Запустить проект:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После этого открыть `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Что сделано
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- выбор даты;
+- просмотр бронирований;
+- создание бронирования;
+- редактирование;
+- удаление;
+- проверка времени работы 09:00–18:00;
+- минимальная длительность — 30 минут;
+- максимальная — 2 часа;
+- проверка пересечений бронирований;
+- запрет бронирования прошедшего времени;
+- обработка ошибок API и `409 Conflict`;
+- loading и empty states;
+- mock API на Next.js Route Handlers;
+- Redux Toolkit для состояния бронирований;
+- отдельный API layer и validation.
 
-## Learn More
+## Что не сделано
 
-To learn more about Next.js, take a look at the following resources:
+- авторизация;
+- реальная база данных;
+- реальный backend;
+- несколько переговорных комнат;
+- тесты.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Для проекта используется in-memory store, поэтому данные сбрасываются после перезапуска сервера.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Структура
 
-## Deploy on Vercel
+Основная логика бронирований находится в `features/bookings`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+API находится в `app/api/bookings`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Общие UI-компоненты находятся в `components/ui`.
+
+Redux — в `store`.
+
+## Время
+
+На реализацию проекта ушло около **3 часов**.
+
+```
+
+```
