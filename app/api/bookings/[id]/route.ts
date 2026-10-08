@@ -6,9 +6,7 @@ import {
 import { bookings } from "../store";
 
 type RouteContext = {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>;
 };
 
 export const PATCH = async (request: NextRequest, { params }: RouteContext) => {
